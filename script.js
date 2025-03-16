@@ -143,3 +143,45 @@ if (document.body.contains(document.getElementById("forum-list"))) {
     loadForums();
             }
             
+const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // Ganti dengan API Key OpenAI
+
+function sendMessage() {
+    let userInput = document.getElementById("user-input").value;
+    if (!userInput.trim()) return;
+
+    // Tambahkan pesan pengguna ke chat box
+    let chatBox = document.getElementById("chat-box");
+    let userMessage = `<div><strong>Anda:</strong> ${userInput}</div>`;
+    chatBox.innerHTML += userMessage;
+
+    // Panggil API OpenAI
+    fetch("https://api.openai.com/v1/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [{role: "user", content: userInput}]
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        let botResponse = `<div><strong>AI:</strong> ${data.choices[0].message.content}</div>`;
+        chatBox.innerHTML += botResponse;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+
+    // Bersihkan input
+    document.getElementById("user-input").value = "";
+}
+
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+}
