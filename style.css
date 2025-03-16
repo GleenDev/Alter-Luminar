@@ -577,3 +577,53 @@ input {
     color: white;
     }
     
+#chat-ai-btn {
+    background: linear-gradient(45deg, #6200ea, #3700b3);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek glow */
+#chat-ai-btn::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 50%);
+    transition: 0.5s ease;
+}
+
+#chat-ai-btn:hover::before {
+    top: 0;
+    left: 0;
+}
+
+/* Efek hover */
+#chat-ai-btn:hover {
+    background: linear-gradient(45deg, #3700b3, #6200ea);
+    transform: scale(1.05);
+}
+
+/* Efek getar saat diklik */
+#chat-ai-btn:active {
+    animation: shake 0.2s linear;
+}
+
+/* Animasi getar */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+    }
