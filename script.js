@@ -185,3 +185,15 @@ function handleKeyPress(event) {
         sendMessage();
     }
 }
+document.addEventListener("DOMContentLoaded", function() {
+    let chatBtn = document.getElementById("chat-ai-btn");
+
+    chatBtn.addEventListener("mouseenter", function() {
+        chatBtn.textContent = "🚀 Ngobrol Sekarang!";
+    });
+
+    chatBtn.addEventListener("mouseleave", function() {
+        chatBtn.textContent = "💬 Chat AI";
+    });
+});
+    
