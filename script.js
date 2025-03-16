@@ -76,93 +76,70 @@ document.addEventListener("DOMContentLoaded", function () {
     let uploadStatus = document.getElementById("uploadStatus");
     let progressBar = document.getElementById("progressBar");
 
-    // Klik drop zone untuk membuka file picker
-    dropZone.addEventListener("click", function () {
-        fileInput.click();
-    });
-
-    // Drag & Drop File
-    dropZone.addEventListener("dragover", function (event) {
-        event.preventDefault();
-        dropZone.style.background = "rgba(255, 255, 255, 0.2)";
-    });
-
-    dropZone.addEventListener("dragleave", function () {
-        dropZone.style.background = "transparent";
-    });
-
-    dropZone.addEventListener("drop", function (event) {
-        event.preventDefault();
-        dropZone.style.background = "transparent";
-        fileInput.files = event.dataTransfer.files;
-        showPreview(fileInput.files[0]);
-    });
-
-    // Tampilkan preview gambar
-    fileInput.addEventListener("change", function () {
-        showPreview(this.files[0]);
-    });
-
-    function showPreview(file) {
-        if (file && file.type.startsWith("image/")) {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-                previewImage.src = e.target.result;
-                previewImage.style.display = "block";
-            };
-            reader.readAsDataURL(file);
-        } else {
-            previewImage.style.display = "none";
-        }
-    }
-
-    // Simulasi Upload dengan Progress Bar
-    uploadForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        if (fileInput.files.length === 0) {
-            uploadStatus.innerHTML = "Silakan pilih file untuk diunggah.";
-            uploadStatus.style.color = "red";
-            return;
-        }
-
-        let fileSize = fileInput.files[0].size / 1024 / 1024; // Konversi ke MB
-        if (fileSize > 100) {
-            uploadStatus.innerHTML = "Ukuran file terlalu besar! Maksimal 100MB.";
-            uploadStatus.style.color = "red";
-            return;
-        }
-
-        uploadStatus.innerHTML = "Mengunggah...";
-        uploadStatus.style.color = "yellow";
-        progressBar.style.display = "block";
-
-        let progress = 0;
-        let uploadInterval = setInterval(function () {
-            progress += 10;
-            progressBar.value = progress;
-
-            if (progress >= 100) {
-                clearInterval(uploadInterval);
-                uploadStatus.innerHTML = "File berhasil diunggah!";
-                uploadStatus.style.color = "green";
-            }
-        }, 300);
-    });
-});
-    
-function openUploadModal() {
-    document.getElementById("uploadModal").style.display = "block";
-}
-
-function closeUploadModal() {
-    document.getElementById("uploadModal").style.display = "none";
-}
-
-// Tutup modal jika klik di luar area modal
-window.onclick = function(event) {
-    let modal = document.getElementById("uploadModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
+// Konfigurasi Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
 };
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Fungsi untuk menyimpan forum ke Firebase
+function submitForum() {
+    let title = document.getElementById("forum-title").value;
+    let text = document.getElementById("forum-text").value;
+    let date = new Date().toLocaleDateString();
+
+    if (title === "" || text === "") {
+        alert("Judul dan isi forum harus diisi!");
+        return;
+    }
+
+    let newForumRef = database.ref("forums").push();
+    newForumRef.set({
+        title: title,
+        text: text,
+        date: date
+    }).then(() => {
+        alert("Forum berhasil diunggah!");
+        window.location.href = "forums.html";
+    }).catch((error) => {
+        console.error("Gagal menyimpan forum:", error);
+    });
+}
+
+// Fungsi untuk menampilkan forum di forums.html
+function loadForums() {
+    const forumList = document.getElementById("forum-list");
+
+    database.ref("forums").on("value", (snapshot) => {
+        forumList.innerHTML = "";
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                let forum = childSnapshot.val();
+                let forumItem = document.createElement("div");
+                forumItem.classList.add("forum-item");
+                forumItem.innerHTML = `
+                    <h2>${forum.title}</h2>
+                    <p><small>${forum.date}</small></p>
+                    <p>${forum.text}</p>
+                `;
+                forumList.appendChild(forumItem);
+            });
+        } else {
+            forumList.innerHTML = "<p>Tidak ada forum yang tersedia.</p>";
+        }
+    });
+}
+
+// Jalankan loadForums() jika halaman adalah forums.html
+if (document.body.contains(document.getElementById("forum-list"))) {
+    loadForums();
+            }
+            
