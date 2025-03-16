@@ -5,35 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alter Luminar</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
 
     <header>
         <h1>Forum Alter Luminar</h1>
-        <p>Unggah forum, foto, video, atau file lainnya (maks. 100MB)</p>
+        <p>Tulis sesuatu dan bagikan dengan komunitas.</p>
         <a href="index.html" class="btn">Kembali ke Beranda</a>
+        <a href="forums.html" class="btn">Lihat Forum</a>
     </header>
 
-    <section class="upload-container">
-        <form id="uploadForm" action="upload.php" method="POST" enctype="multipart/form-data">
-            <label for="forumText">Tulis Forum:</label>
+    <section class="forum-container">
+        <form id="forumForm" action="submit_forum.php" method="POST">
+            <label for="forumTitle">Judul Forum:</label>
+            <input type="text" name="forumTitle" id="forumTitle" placeholder="Masukkan judul" required>
+
+            <label for="forumText">Isi Forum:</label>
             <textarea name="forumText" id="forumText" placeholder="Tulis sesuatu..." required></textarea>
 
-            <label>Unggah File:</label>
-            <div id="dropZone" class="drop-zone">
-                <p>Seret & lepas file di sini atau klik untuk memilih</p>
-                <input type="file" name="fileUpload" id="fileUpload" hidden>
-            </div>
-
-            <div id="previewContainer">
-                <img id="previewImage" src="" alt="Preview" style="display:none;">
-            </div>
-
-            <progress id="progressBar" value="0" max="100" style="display: none;"></progress>
-
-            <button type="submit" class="btn">Unggah</button>
-            <p id="uploadStatus"></p>
+            <button type="submit" class="btn">Kirim</button>
         </form>
     </section>
 
