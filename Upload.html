@@ -6,28 +6,24 @@
     <title>Alter Luminar</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <h1>Forum Alter Luminar</h1>
         <p>Unggah forum, foto, video, atau file lainnya (maks. 100MB)</p>
         <a href="index.html" class="btn">Kembali ke Beranda</a>
     </header>
 
-    <!-- Form Upload -->
     <section class="upload-container">
-        <form id="uploadForm">
+        <form id="uploadForm" action="upload.php" method="POST" enctype="multipart/form-data">
             <label for="forumText">Tulis Forum:</label>
-            <textarea id="forumText" placeholder="Tulis sesuatu..." required></textarea>
+            <textarea name="forumText" id="forumText" placeholder="Tulis sesuatu..." required></textarea>
 
             <label>Unggah File:</label>
             <div id="dropZone" class="drop-zone">
                 <p>Seret & lepas file di sini atau klik untuk memilih</p>
-                <input type="file" id="fileUpload" hidden>
+                <input type="file" name="fileUpload" id="fileUpload" hidden>
             </div>
 
             <div id="previewContainer">
