@@ -151,3 +151,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
     
+function openUploadModal() {
+    document.getElementById("uploadModal").style.display = "block";
+}
+
+function closeUploadModal() {
+    document.getElementById("uploadModal").style.display = "none";
+}
+
+// Tutup modal jika klik di luar area modal
+window.onclick = function(event) {
+    let modal = document.getElementById("uploadModal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+};
