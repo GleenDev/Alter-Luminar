@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Navigasi</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Form Pencarian Google -->
+    <div class="search-container">
+        <form action="https://www.google.com/search" method="GET" target="_blank">
+            <input type="text" name="q" placeholder="Cari di Google..." required>
+            <button type="submit"><i class="fas fa-search"></i> Cari</button>
+        </form>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Menu Navigasi</h1>
+            <p>Pilih halaman yang ingin Anda kunjungi.</p>
+            <a href="index.html" class="btn">Kembali ke Home</a>
+        </div>
+    </section>
+
+    <!-- Menu Navigasi -->
+    <section class="menu">
+        <h2>Pilih Halaman</h2>
+        <div class="menu-container">
+            <div class="menu-card" onclick="openPage('Rules.html')">
+                <i class="fas fa-gavel"></i>
+                <h3>Rules</h3>
+                <p>Berisi tentang rules Alter Luminar.</p>
+            </div>
+            <div class="menu-card" onclick="openPage('About.html')">
+                <i class="fas fa-info-circle"></i>
+                <h3>About ALRP</h3>
+                <p>Berisi tentang Alter Luminar.</p>
+            </div>
+            <div class="menu-card" onclick="openPage('copyright.html')">
+                <i class="fas fa-copyright"></i>
+                <h3>copyright</h3>
+                <p>Berisi tentang copyright server atau website Alter Luminar.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pop-up Modal -->
+    <div id="popupModal" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Link Discord!</h2>
+            <p>https://discord.gg/cATfhRZA</p>
+            <button class="btn" onclick="closePopup()">Tutup</button>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Sann® 2025. Semua Hak Dilindungi.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alter Luminar</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Alter Luminar</div>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#features">Fitur</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Pop-up Modal -->
+    <div id="popupModal" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Selamat Datang!</h2>
+            <p>Terima kasih telah mengunjungi website Alter Luminar.</p>
+            <button class="btn" onclick="closePopup()">Tutup</button>
+    </div>
+        </div>
+    
+    <!-- Tombol Mode Gelap -->
+    <button id="theme-toggle" class="btn">🌙 Mode Gelap</button>
+    
+    <!-- Hero Section -->
+    <header id="home">
+        <h1>Selamat Datang</h1>
+        <p>Alter Luminar Server San Andreas Multiplayer Yang Menarik</p>
+        <a href="Sann.html" class="btn">Jelajahi</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>Tentang Kami</h2>
+        <p>Kami menyediakan server San Andreas Multiplayer (SAMP) yang menarik dengan fitur-fitur keren di dalamnya.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <h2>Fitur</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <h3>Link Discord</h3>
+                <p>https://discord.gg/cATfhRZA</p>
+            </div>
+            <div class="feature-card">
+                <h3>Link YouTube</h3>
+                <p>https://youtube.com/@alterluminar?si=DlnpwcOh5_0uYvmj.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Link Tiktok</h3>
+                <p>ComingSoon.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Link Instagram</h3>
+                <p>ComingSoon.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; Sann® 2025. Semua Hak Dilindungi.</p>
+    </footer>
+</body>
+</html>
