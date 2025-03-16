@@ -143,7 +143,7 @@ if (document.body.contains(document.getElementById("forum-list"))) {
     loadForums();
             }
             
-const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // Ganti dengan API Key OpenAI
+const OPENAI_API_KEY = "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"; // Ganti dengan API Key OpenAI
 
 function sendMessage() {
     let userInput = document.getElementById("user-input").value;
