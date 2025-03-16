@@ -16,16 +16,60 @@
     </header>
 
     <section class="forum-container">
-        <form id="forumForm" action="submit_forum.php" method="POST">
+        <form id="forumForm">
             <label for="forumTitle">Judul Forum:</label>
-            <input type="text" name="forumTitle" id="forumTitle" placeholder="Masukkan judul" required>
+            <input type="text" id="forumTitle" placeholder="Masukkan judul" required>
 
             <label for="forumText">Isi Forum:</label>
-            <textarea name="forumText" id="forumText" placeholder="Tulis sesuatu..." required></textarea>
+            <textarea id="forumText" placeholder="Tulis sesuatu..." required></textarea>
 
             <button type="submit" class="btn">Kirim</button>
         </form>
     </section>
+
+    <!-- Tambahkan Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+    <script>
+        // Konfigurasi Firebase (GANTI DENGAN KONFIGURASI ANDA)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJxuI9XkE-3Dfm7Ae6q-N1sFzWUWUKZcM",
+            authDomain: "forumsamp-2f4d1.firebaseapp.com",
+            databaseURL: "https://forumsamp-2f4d1-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "forumsamp-2f4d1",
+            storageBucket: "forumsamp-2f4d1.firebasestorage.app",
+            messagingSenderId: "681453931659",
+            appId: "1:681453931659:web:8c3563d72d08e070a6988e"
+        };
+
+        // Inisialisasi Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Simpan forum ke Firebase
+        document.getElementById("forumForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let title = document.getElementById("forumTitle").value.trim();
+            let text = document.getElementById("forumText").value.trim();
+
+            if (title === "" || text === "") {
+                alert("Judul dan isi forum tidak boleh kosong!");
+                return;
+            }
+
+            let newPostRef = database.ref("forums").push();
+            newPostRef.set({
+                title: title,
+                text: text,
+                date: new Date().toLocaleString()
+            });
+
+            alert("Forum berhasil dikirim!");
+            window.location.href = "forums.html";
+        });
+    </script>
 
 </body>
 </html>
