@@ -14,7 +14,7 @@
     <!-- Header -->
     <header>
         <h1>Forum Alter Luminar</h1>
-        <p>Unggah forum, foto, video, atau file lainnya</p>
+        <p>Unggah forum, foto, video, atau file lainnya (maks. 100MB)</p>
         <a href="index.html" class="btn">Kembali ke Beranda</a>
     </header>
 
@@ -24,8 +24,17 @@
             <label for="forumText">Tulis Forum:</label>
             <textarea id="forumText" placeholder="Tulis sesuatu..." required></textarea>
 
-            <label for="fileUpload">Unggah File:</label>
-            <input type="file" id="fileUpload" required>
+            <label>Unggah File:</label>
+            <div id="dropZone" class="drop-zone">
+                <p>Seret & lepas file di sini atau klik untuk memilih</p>
+                <input type="file" id="fileUpload" hidden>
+            </div>
+
+            <div id="previewContainer">
+                <img id="previewImage" src="" alt="Preview" style="display:none;">
+            </div>
+
+            <progress id="progressBar" value="0" max="100" style="display: none;"></progress>
 
             <button type="submit" class="btn">Unggah</button>
             <p id="uploadStatus"></p>
@@ -33,5 +42,4 @@
     </section>
 
 </body>
-              </html>
-              
+</html>
