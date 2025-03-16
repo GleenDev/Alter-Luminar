@@ -3,56 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum Alter Luminar</title>
+    <title>Forum</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-
     <header>
-        <h1>Daftar Forum</h1>
-        <a href="index.html" class="btn">Kembali ke Beranda</a>
-        <a href="upload.html" class="btn">Buat Forum Baru</a>
+        <h1>Forum</h1>
     </header>
-
-    <section id="forum-list" class="forum-list"></section>
-
-    <!-- Tambahkan Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-
-    <script>
-        // Konfigurasi Firebase (GANTI DENGAN KONFIGURASI ANDA)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDJxuI9XkE-3Dfm7Ae6q-N1sFzWUWUKZcM",
-            authDomain: "forumsamp-2f4d1.firebaseapp.com",
-            databaseURL: "https://forumsamp-2f4d1-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "forumsamp-2f4d1",
-            storageBucket: "forumsamp-2f4d1.firebasestorage.app",
-            messagingSenderId: "681453931659",
-            appId: "1:681453931659:web:8c3563d72d08e070a6988e"
-        };
-        
-        // Inisialisasi Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        // Ambil data dari Firebase
-        const forumList = document.getElementById("forum-list");
-        database.ref("forums").on("value", (snapshot) => {
-            forumList.innerHTML = "";
-            snapshot.forEach((childSnapshot) => {
-                let forum = childSnapshot.val();
-                let forumItem = document.createElement("div");
-                forumItem.classList.add("forum-item");
-                forumItem.innerHTML = `
-                    <h2>${forum.title}</h2>
-                    <p><small>${forum.date}</small></p>
-                    <p>${forum.text}</p>
-                `;
-                forumList.appendChild(forumItem);
-            });
-        });
-    </script>
-
+    <main id="forum-list">
+        <p>Memuat forum...</p>
+    </main>
 </body>
 </html>
