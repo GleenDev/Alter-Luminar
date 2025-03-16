@@ -3,75 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alter Luminar</title>
+    <title>Buat Forum</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-
     <header>
-        <h1>Forum Alter Luminar</h1>
-        <p>Tulis sesuatu dan bagikan dengan komunitas.</p>
-        <a href="index.html" class="btn">Kembali ke Beranda</a>
-        <a href="forums.html" class="btn">Lihat Forum</a>
+        <h1>Buat Forum Baru</h1>
     </header>
-
-    <section class="forum-container">
-        <form id="forumForm">
-            <label for="forumTitle">Judul Forum:</label>
-            <input type="text" id="forumTitle" placeholder="Masukkan judul" required>
-
-            <label for="forumText">Isi Forum:</label>
-            <textarea id="forumText" placeholder="Tulis sesuatu..." required></textarea>
-
-            <button type="submit" class="btn">Kirim</button>
-        </form>
-    </section>
-
-    <!-- Tambahkan Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-
-    <script>
-        // Konfigurasi Firebase (GANTI DENGAN KONFIGURASI ANDA)
-        const firebaseConfig = {
-            apiKey: "AIzaSyDJxuI9XkE-3Dfm7Ae6q-N1sFzWUWUKZcM",
-            authDomain: "forumsamp-2f4d1.firebaseapp.com",
-            databaseURL: "https://forumsamp-2f4d1-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "forumsamp-2f4d1",
-            storageBucket: "forumsamp-2f4d1.firebasestorage.app",
-            messagingSenderId: "681453931659",
-            appId: "1:681453931659:web:8c3563d72d08e070a6988e"
-        };
-    
-        // Inisialisasi Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        // Simpan forum ke Firebase
-        document.getElementById("forumForm").addEventListener("submit", function submitForum() {
-    let title = document.getElementById("forum-title").value;
-    let text = document.getElementById("forum-text").value;
-    let date = new Date().toLocaleDateString();
-
-    if (title === "" || text === "") {
-        alert("Judul dan isi forum harus diisi!");
-        return;
-    }
-
-    let newForumRef = database.ref("forums").push();  
-    newForumRef.set({
-        title: title,
-        text: text,
-        date: date
-    }).then(() => {
-        console.log("Forum berhasil disimpan!");
-        alert("Forum berhasil diunggah!");
-    }).catch((error) => {
-        console.error("Gagal menyimpan forum:", error);
-    });
-        }
-                                                          
-    </script>
-
+    <main>
+        <input type="text" id="forum-title" placeholder="Judul Forum" required>
+        <textarea id="forum-text" placeholder="Isi Forum" required></textarea>
+        <button onclick="submitForum()">Kirim</button>
+    </main>
 </body>
 </html>
