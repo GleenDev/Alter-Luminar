@@ -42,7 +42,29 @@
             messagingSenderId: "681453931659",
             appId: "1:681453931659:web:8c3563d72d08e070a6988e"
         };
+    function submitForum() {
+    let title = document.getElementById("forum-title").value;
+    let text = document.getElementById("forum-text").value;
+    let date = new Date().toLocaleDateString();
 
+    if (title === "" || text === "") {
+        alert("Judul dan isi forum harus diisi!");
+        return;
+    }
+
+    let newForumRef = database.ref("forums").push();  
+    newForumRef.set({
+        title: title,
+        text: text,
+        date: date
+    }).then(() => {
+        console.log("Forum berhasil disimpan!");
+        alert("Forum berhasil diunggah!");
+    }).catch((error) => {
+        console.error("Gagal menyimpan forum:", error);
+    });
+        }
+        
         // Inisialisasi Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
