@@ -42,7 +42,13 @@
             messagingSenderId: "681453931659",
             appId: "1:681453931659:web:8c3563d72d08e070a6988e"
         };
-    function submitForum() {
+    
+        // Inisialisasi Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Simpan forum ke Firebase
+        document.getElementById("forumForm").addEventListener("submit", function submitForum() {
     let title = document.getElementById("forum-title").value;
     let text = document.getElementById("forum-text").value;
     let date = new Date().toLocaleDateString();
@@ -64,33 +70,7 @@
         console.error("Gagal menyimpan forum:", error);
     });
         }
-        
-        // Inisialisasi Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        // Simpan forum ke Firebase
-        document.getElementById("forumForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            let title = document.getElementById("forumTitle").value.trim();
-            let text = document.getElementById("forumText").value.trim();
-
-            if (title === "" || text === "") {
-                alert("Judul dan isi forum tidak boleh kosong!");
-                return;
-            }
-
-            let newPostRef = database.ref("forums").push();
-            newPostRef.set({
-                title: title,
-                text: text,
-                date: new Date().toLocaleString()
-            });
-
-            alert("Forum berhasil dikirim!");
-            window.location.href = "forums.html";
-        });
+                                                          
     </script>
 
 </body>
