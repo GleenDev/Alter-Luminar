@@ -78,13 +78,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Konfigurasi Firebase
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyDJxuI9XkE-3Dfm7Ae6q-N1sFzWUWUKZcM",
+    authDomain: "forumsamp-2f4d1.firebaseapp.com",
+    databaseURL: "https://forumsamp-2f4d1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "forumsamp-2f4d1",
+    storageBucket: "forumsamp-2f4d1.firebasestorage.app",
+    messagingSenderId: "681453931659",
+    appId: "1:681453931659:web:8c3563d72d08e070a6988e"
 };
 
 firebase.initializeApp(firebaseConfig);
